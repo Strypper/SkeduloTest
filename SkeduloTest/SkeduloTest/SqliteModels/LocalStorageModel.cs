@@ -1,11 +1,7 @@
-﻿using SQLite;
-
-namespace SkeduloTest.Models
+﻿namespace SkeduloTest.SqliteModels
 {
-    [Table("Breed")]
-    public class Breed
+    public class LocalStorageModel
     {
-        public Weight weight { get; set; }
         public string id { get; set; }
         public string name { get; set; }
         public string cfa_url { get; set; }
@@ -42,7 +38,12 @@ namespace SkeduloTest.Models
         public string wikipedia_url { get; set; }
         public int hypoallergenic { get; set; }
         public string reference_image_id { get; set; }
-        public Image image { get; set; }
+        public string imperial { get; set; }
+        public string metric { get; set; }
+        public string image_id { get; set; }
+        public int width { get; set; }
+        public int height { get; set; }
+        public string url { get; set; }
         public int? cat_friendly { get; set; }
         public int? bidability { get; set; }
     }

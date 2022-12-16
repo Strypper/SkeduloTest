@@ -13,10 +13,10 @@
              
              Title="{x:Binding Title}">
     <Shell.SearchHandler>
-        <searchHandlers:BreedHandler
-            Placeholder="Search Breeds"
-            ShowsResults="True"
-            Breeds="{x:Binding Breeds}">
+        <searchHandlers:BreedHandler ShowsResults="True"
+                                     Placeholder="Search Breeds"
+                                     Breeds="{x:Binding Breeds}"
+                                     SelectBreed="BreedHandler_SelectBreed">
             <searchHandlers:BreedHandler.ItemTemplate>
                 <DataTemplate x:DataType="models:Breed">
                     <Grid Margin="5" RowDefinitions="Auto" ColumnDefinitions="40,Auto">
@@ -51,7 +51,8 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Download" 
-                     Clicked="Download_Clicked"/>
+                     Command="{x:Binding SaveToCacheCommand}"
+                     CommandParameter="{x:Binding Breeds}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

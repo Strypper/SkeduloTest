@@ -14,12 +14,11 @@ namespace SkeduloTest.Services
         {
             items = new List<Item>()
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Consume thecatapi.com Gateway", Description="Done." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Show breeds", Description="Done. Please explore \nBreed.cs\nContentViews/BreedCardContentView.xaml" },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Flexible image size", Description="The image of the breed should scale for being able to show a full image without\r\ncropping the image. Which means each item can have different sizes." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Check internet", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Consume thecatapi.com Gateway", Description="I was struggle the docs little bit, but found a way to implement", IsDone = true},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Show breeds", Description="Extracted Component. Please explore \nBreed.cs\nContentViews/BreedCardContentView.xaml", IsDone = true },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Flexible image size", Description="The image of the breed should scale for being able to show a full image without\r\ncropping the image. Which means each item can have different sizes.", IsDone = true },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Check internet", Description="Done. Simple implementation \nViewModel/BreedViewModel.cs", IsDone = true },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Local Database", Description="Use Sqlite to save data, I don't know why I can't save all the original tables, I'm come from the EF Core and SQL Server so this feel a little bit weird. \nAnyway I have gather all the models in one place and store them", IsDone=true }
             };
         }
 

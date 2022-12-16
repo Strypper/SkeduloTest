@@ -1,9 +1,11 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SkeduloTest.Models
 {
+    [Table("Image")]
     public class Image
     {
         public string id { get; set; }

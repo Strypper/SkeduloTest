@@ -7,7 +7,9 @@ namespace SkeduloTest.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {
-        public string Message { get; set; } = "Hi guys, hope all of these meet your requirements I'm currently limited in time so this will devliver as much as possible. \r\n \r\nBut in a serious project I would use CLEAN ARCHITECTURE, that would be too overkilled in this project so I am sticking with the tranditional now, \r\n \r\nI also made list of tasks to sumurize the requirements ";
+        public string Message { get; set; } = "Hi guys, hope all of these meet your requirements I'm currently limited in time so this will devliver as much as possible.";
+        public string Message1 { get; set; } = "But in a serious project I would use CLEAN ARCHITECTURE, that would be too overkilled in this project so I am sticking with the tranditional now";
+        public string Message2 { get; set; } = "I also made list of tasks to sumurize the requirements, check out all the requirements in the page below";
         public AboutViewModel()
         {
             Title = "About";

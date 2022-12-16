@@ -21,6 +21,8 @@ namespace SkeduloTest.Handlers
             get => (ObservableCollection<Breed>)GetValue(BreedsProperty);
             set => SetValue(BreedsProperty, value);
         }
+        public delegate void SelectBreedEventHandler(Breed breed);
+        public event SelectBreedEventHandler SelectBreed;
         public BreedHandler()
         {
             Breeds = new ObservableCollection<Breed>();
@@ -44,12 +46,8 @@ namespace SkeduloTest.Handlers
         protected override async void OnItemSelected(object item)
         {
             base.OnItemSelected(item);
-            //var navParam = new Dictionary<string, object>();
-            //navParam.Add("StudentDetail", item);
-            //if (!string.IsNullOrWhiteSpace(NavigationRoute))
-            //{
-            //    await Shell.Current.GoToAsync(NavigationRoute, navParam);
-            //}
+            var selectedBreed = item as Breed;
+            SelectBreed.Invoke(selectedBreed);
         }
     }
 }

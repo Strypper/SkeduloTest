@@ -28,9 +28,9 @@ namespace SkeduloTest.Views
             _viewModel.OnAppearing();
         }
 
-        private void Download_Clicked(object sender, EventArgs e)
+        private void BreedHandler_SelectBreed(Models.Breed breed)
         {
-            BreedCollectionView.ScrollTo(10, animate: true);
+            BreedCollectionView.ScrollTo(breed, animate: true);
         }
     }
 }

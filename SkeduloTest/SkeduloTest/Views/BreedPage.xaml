@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:contentViews="clr-namespace:SkeduloTest.ContentViews"
+             xmlns:viewModels="clr-namespace:SkeduloTest.ViewModels"
+             xmlns:models="clr-namespace:SkeduloTest.Models"
+             xmlns:searchHandlers="clr-namespace:SkeduloTest.Handlers"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             
+             x:Name="root"
+             x:DataType="viewModels:BreedViewModel"
+             x:Class="SkeduloTest.Views.BreedPage"
+             
+             Title="{x:Binding Title}">
+    <Shell.SearchHandler>
+        <searchHandlers:BreedHandler
+            Placeholder="Search Breeds"
+            ShowsResults="True"
+            Breeds="{x:Binding Breeds}">
+            <searchHandlers:BreedHandler.ItemTemplate>
+                <DataTemplate x:DataType="models:Breed">
+                    <Grid Margin="5" RowDefinitions="Auto" ColumnDefinitions="40,Auto">
+                        <Image Grid.Row="0" Grid.Column="0" Source="{x:Binding image.url}" HeightRequest="35" WidthRequest="35" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="{x:Binding name}" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </searchHandlers:BreedHandler.ItemTemplate>
+        </searchHandlers:BreedHandler>
+    </Shell.SearchHandler>
+    
+    <ContentPage.Resources>
+        <DataTemplate x:Key="BreedCollectionViewItemTemaplate"
+                      x:DataType="models:Breed">
+            <contentViews:BreedCardContentView Breed="{x:Binding}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="BreedCollectionViewFooterTemplate"
+                      x:DataType="viewModels:BreedViewModel">
+            <Grid Padding="6" IsVisible="{x:Binding IsBusy}" CompressedLayout.IsHeadless="True">
+                <Grid.Triggers>
+                    <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                        <Setter Property="HeightRequest" Value="0" />
+                    </Trigger>
+                </Grid.Triggers>
+                <Label Text="Skedulo Test" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" />
+            </Grid>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Download" 
+                     Clicked="Download_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <RefreshView Command="{x:Binding LoadBreedsCommand}"
+                     IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView x:Name="BreedCollectionView"
+                            android:ListView.IsFastScrollEnabled="true"
+                            EmptyView="Maybe network is not connected ?"
+                            
+                            ItemsSource="{x:Binding Breeds}"
+                            ItemTemplate="{x:StaticResource BreedCollectionViewItemTemaplate}"
+                            
+                            RemainingItemsThreshold="{x:Binding ItemThreshold}"
+                            RemainingItemsThresholdReachedCommand="{x:Binding IncreamentLoadCommand}"
+                            
+                            Footer="{x:Binding}"
+                            FooterTemplate="{x:StaticResource BreedCollectionViewFooterTemplate}"/>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>
